@@ -1,0 +1,16 @@
+bin
+.idea
+target
+lib
+classes
+data
+app-data
+.classpath
+.project
+.settings
+*.log
+*~
+*.ipr
+*.iws
+*.iml
+pom.xml.versionsBackup
