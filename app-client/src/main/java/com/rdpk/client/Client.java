@@ -5,8 +5,8 @@ import java.net.URL;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import com.rdpk.endpoint.Hello;
 import com.rdpk.ws.Command1;
+import com.rdpk.ws.Hello;
 import com.rdpk.ws.ResponseTicket;
 
 public class Client {
