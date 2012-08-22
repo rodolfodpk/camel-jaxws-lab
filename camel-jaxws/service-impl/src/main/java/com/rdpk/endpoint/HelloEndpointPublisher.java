@@ -19,13 +19,15 @@ import com.rdpk.ws.Hello;
 
 public class HelloEndpointPublisher {
 
-	static final Main main = new Main();
+	final Main main = new Main();
 	
-	static Hello service ;
-	
-	public static void main(String[] args) throws Exception {
+	final DefaultCamelContext c;
 
-		DefaultCamelContext c = new DefaultCamelContext(createRegistry());
+	final Hello service;
+
+	public HelloEndpointPublisher() throws Exception {
+
+		c = new DefaultCamelContext(createRegistry());
 
 		c.addRoutes(new TestRoute());
 
@@ -37,6 +39,10 @@ public class HelloEndpointPublisher {
         Validator validator = factory.getValidator();
 
 		service = new HelloImpl(p, validator);
+
+	}
+	
+	public void doSomeWOrk() throws Exception {
 		
 //		System.out.println(System.getProperty("java.endorsed.dirs"));
 //		System.setProperty("com.sun.net.httpserver.HttpServerProvider","org.eclipse.jetty.jaxws2spi.JettyHttpServerProvider");
@@ -44,11 +50,10 @@ public class HelloEndpointPublisher {
 //		HttpContext httpContext = httpsServer.createContext("/ws/hello");
 //		Endpoint endpoint = Endpoint.create(service);
 //		endpoint.publish(httpContext);
-
 		
-		 Endpoint ws = Endpoint.create(service);
-		 ws.setExecutor(Executors.newFixedThreadPool(10));
-		 ws.publish("http://localhost:9999/ws/hello");
+		Endpoint ws = Endpoint.create(service);
+		ws.setExecutor(Executors.newFixedThreadPool(10));
+		ws.publish("http://localhost:9999/ws/hello");
 		
 		main.enableHangupSupport();
 
@@ -62,8 +67,16 @@ public class HelloEndpointPublisher {
 		
 		System.out.println("finished !!!");
 		
-    }
+	}
+
 	
+	public static void main(String[] args) throws Exception {
+
+		HelloEndpointPublisher p = new HelloEndpointPublisher();
+		
+		p.doSomeWOrk();
+		
+    }
 	
 	private static SimpleRegistry createRegistry() {
 		SimpleRegistry r = new SimpleRegistry();
