@@ -18,6 +18,6 @@ public interface Hello {
 
 	@WebMethod public Command1 ha();
 	
-	@WebMethod public String enumPar(@WebParam ReturnCode r);
+	@WebMethod public String enumParam(@WebParam ReturnCode r);
 
 }
