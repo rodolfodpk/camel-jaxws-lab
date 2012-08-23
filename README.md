@@ -11,7 +11,7 @@ mvn clean install
 
 mvn exec:exec     
 
-once the server is running then let's make some calls:
+-- once the server is running then let's make some calls. Open another terminal window then:
 
 cd app-client
 
@@ -19,7 +19,7 @@ mvn clean install
 
 mvn exec:exec
 
-you will notice something like this on the console:
+-- you will notice something like this on the client window:
 
 s.enqueueToProcess(com.rdpk.ws.Command1@4e2016b0)
 
@@ -28,6 +28,8 @@ returned erro?
 hello = Hello, Rodolfo
 
 ha = com.rdpk.ws.Command1@58c16b18
+
+-- and on the server window you will see msg body and some http headers
 
 TODO
 ----
