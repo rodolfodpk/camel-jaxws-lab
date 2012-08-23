@@ -6,23 +6,31 @@ How to run it:
 --------------
 
 cd camel-jaxws
+
 mvn clean install
+
 mvn exec:exec     
 
 once the server is running then let's make some calls:
 
 cd app-client
+
 mvn clean install
+
 mvn exec:exec
 
 you will notice something like this on the console:
 
 s.enqueueToProcess(com.rdpk.ws.Command1@4e2016b0)
+
 returned erro?
+
 hello = Hello, Rodolfo
+
 ha = com.rdpk.ws.Command1@58c16b18
 
 TODO
+----
 
 * Jetty as a default HttpServer impl
 * Figure out how to make it work within Eclipse with the current Hello import (pls see line 9 of com.rdpk.client.Client class) 
