@@ -1,13 +1,13 @@
 package com.rdpk.client;
 
-import com.rdpk.endpoint.Hello;
-import com.rdpk.ws.Command1;
-import com.rdpk.ws.ResponseTicket;
-
 import java.net.URL;
 
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
+
+import com.rdpk.ws.Command1;
+import com.rdpk.endpoint.Hello; // this works for Maven but to avoid Eclipse compilation error this must be com.rdpk.ws.Hello instead - wtf...
+import com.rdpk.ws.ResponseTicket;
 
 
 public class Client {

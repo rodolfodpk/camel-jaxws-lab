@@ -37,6 +37,21 @@
 			</plugin>
 
 			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<configuration>
+					<executable>java</executable>
+					<arguments>
+						<argument>-classpath</argument>
+						<!-- automatically creates the classpath using all project dependencies, 
+							also adding the project build directory -->
+						<classpath />
+						<argument>com.rdpk.client.Client</argument>
+					</arguments>
+				</configuration>
+			</plugin>
+
+			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
 					<argLine>-Xmx512m</argLine>
@@ -61,6 +76,7 @@
 			<groupId>rdpk</groupId>
 			<artifactId>ws-client</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+
 		</dependency>
 
 	</dependencies>
