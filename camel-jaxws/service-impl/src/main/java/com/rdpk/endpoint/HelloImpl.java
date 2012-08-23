@@ -2,24 +2,31 @@ package com.rdpk.endpoint;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Resource;
 import javax.jws.WebService;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
+import javax.xml.ws.WebServiceContext;
+import javax.xml.ws.handler.MessageContext;
 
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.impl.DefaultProducerTemplate;
 
 import com.rdpk.ws.Command1;
-import com.rdpk.ws.Hello;
+import com.rdpk.ws.Hello; // To run
 import com.rdpk.ws.ResponseTicket;
 import com.rdpk.ws.ReturnCode;
 
 
 @WebService(endpointInterface = "com.rdpk.ws.Hello")
 public class HelloImpl implements Hello {
-	
+
+    @Resource
+    private WebServiceContext wsContext;
+
 	private final ProducerTemplate producer;
 	private final Validator validator;
 
@@ -42,7 +49,7 @@ public class HelloImpl implements Hello {
 	public ResponseTicket enqueueToProcess(final Command1 c) {
 	    List<String> errors = new ArrayList<String>();
 		System.out.println("recei " + c);
-		producer.sendBody(c);
+		producer.sendBodyAndHeaders(c, httpHeaders());
 	    Set<ConstraintViolation<Command1>> constraintViolations = validator.validate(c);
 	    for (ConstraintViolation<Command1> e: constraintViolations) {
 		    errors.add(e.toString());
@@ -64,9 +71,16 @@ public class HelloImpl implements Hello {
 	}
 
 	@Override
-	public String enumPar(ReturnCode r) {
+	public String enumParam(ReturnCode r) {
 		System.out.println("received " + r);
 		return r.toString();
 	}
+
+    @SuppressWarnings("unchecked")
+    private Map<String, Object> httpHeaders() {
+	   Map<String, Object> headers = (Map<String, Object>)wsContext.getMessageContext().get(MessageContext.HTTP_REQUEST_HEADERS);
+       // headers.put("HttpServletRequest", (HttpServletRequest)wsContext.getMessageContext().get(MessageContext.SERVLET_REQUEST));
+       return headers;
+    }
 
 }

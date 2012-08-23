@@ -96,6 +96,7 @@ class TestRoute extends RouteBuilder {
 			public void process(Exchange e) throws Exception {
 				System.out.println("--------------------------------------------------------------->>from jax ws !!");
 				System.out.println(e.getIn().getBody());
+                System.out.print(e.getIn().getHeaders());
 			}
 		});
 
