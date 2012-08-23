@@ -5,7 +5,7 @@ You can do it with Camel in many ways (CFX, Spring WebServices and even Axis) bu
 How to run it:
 --------------
 
-cd camel-jaxws\service-impl
+cd camel-jaxws/service-impl
 
 mvn clean install
 
