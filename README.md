@@ -5,7 +5,7 @@ You can do it with Camel in many ways (CFX, Spring WebServices and even Axis) bu
 How to run it:
 --------------
 
-cd camel-jaxws
+cd camel-jaxws\service-impl
 
 mvn clean install
 
@@ -13,7 +13,7 @@ mvn exec:exec
 
 -- once the server is running then let's make some calls. Open another terminal window then:
 
-cd app-client
+cd ../../app-client
 
 mvn clean install
 
